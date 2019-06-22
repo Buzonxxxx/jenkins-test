@@ -6,29 +6,28 @@ pipeline {
   }
  
   stages {
-    // stage('Update'){
-    //   steps{
-    //     sh 'sh /Volumes/ssd256g/scripts/updateBolt.sh'
-    //   }
-    // }
-    // stage('Build'){
-    //   steps {
-    //     sh 'sh /Volumes/ssd256g/scripts/startBolt.sh'
-    //   }
-    // }
-    // stage('Test'){
-    //   steps{
-    //     sh ''' 
-    //       cd /Volumes/ssd256g/bolt/BOLT-AUTOMATION
-    //       npm i
-    //       npm t
-    //     '''
-    //   }
-    // }
+    stage('Update'){
+      steps{
+        sh 'sh /Volumes/ssd256g/scripts/updateBolt.sh'
+      }
+    }
+    stage('Build'){
+      steps {
+        sh 'sh /Volumes/ssd256g/scripts/startBolt.sh'
+      }
+    }
+    stage('Test'){
+      steps{
+        sh ''' 
+          cd /Volumes/ssd256g/bolt/BOLT-AUTOMATION
+          npm i
+          npm t
+        '''
+      }
+    }
     stage('Delete'){
       steps{
-        // sh 'pm2 delete all'
-        echo ' test'
+        sh 'pm2 delete all'
       }
     }
   }
@@ -40,7 +39,7 @@ pipeline {
             slackSend color: 'good', message: "Back to Normal: ${env.JOB_NAME} - #${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)"
         }
         success {
-            slackSend color: 'good', message: "Success: ${env.JOB_NAME} - #${env.BUILD_NUMBER} Took ${env.BUILD_DURATION} (<${env.BUILD_URL}|Open>)"
+            slackSend color: 'good', message: "Success: ${env.JOB_NAME} - #${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)"
         }
     }
 }
