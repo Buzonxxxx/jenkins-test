@@ -27,7 +27,8 @@ pipeline {
     // }
     stage('Delete'){
       steps{
-        sh 'pm2 delete all'
+        // sh 'pm2 delete all'
+        echo ' test'
       }
     }
   }
