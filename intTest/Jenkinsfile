@@ -35,8 +35,20 @@
           pm2 start npm --name "HowinvestMockAPI" -- restart
 
           pm2 ls
-          pm2 delete all
         '''
+      }
+    }
+    stage('Test'){
+      steps{
+        sh ''' 
+          cd /Volumes/ssd256g/bolt/BOLT-AUTOMATION
+          npm t
+        '''
+      }
+    }
+    stage('Delete'){
+      steps{
+        sh 'pm2 delete all'
       }
     }
   }
