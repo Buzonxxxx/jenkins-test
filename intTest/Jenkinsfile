@@ -31,11 +31,12 @@
           cd /Volumes/ssd256g/bolt/BOLT-CURRENCY
           pm2 start npm --name "currency" -- restart
 
+          sleep 10
+          
           cd /Volumes/ssd256g/bolt/HowinvestMockAPI
           pm2 start npm --name "HowinvestMockAPI" -- restart
 
           pm2 ls
-          sleep 10
         '''
       }
     }
