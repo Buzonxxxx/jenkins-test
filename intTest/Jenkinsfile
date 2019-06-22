@@ -11,11 +11,11 @@ pipeline {
     //     sh 'sh /Volumes/ssd256g/scripts/updateBolt.sh'
     //   }
     // }
-    stage('Build'){
-      steps {
-        sh 'sh /Volumes/ssd256g/scripts/startBolt.sh'
-      }
-    }
+    // stage('Build'){
+    //   steps {
+    //     sh 'sh /Volumes/ssd256g/scripts/startBolt.sh'
+    //   }
+    // }
     // stage('Test'){
     //   steps{
     //     sh ''' 
