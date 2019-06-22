@@ -1,12 +1,4 @@
- #!/usr/bin/env groovy
-
-import java.util.Date
-def start = new Date()
-def err = null
-
-currentBuild.result = "SUCCESS"
- 
- pipeline {
+pipeline {
   agent any
  
   tools {
@@ -39,12 +31,15 @@ currentBuild.result = "SUCCESS"
       }
     }
   }
-}
-
-def timeDiff(st) {
-    def delta = (new Date()).getTime() - st.getTime()
-    def seconds = delta.intdiv(1000) % 60
-    def minutes = delta.intdiv(60 * 1000) % 60
-
-    return "${minutes} min ${seconds} sec"
+  post {
+        failure {
+            slackSend color: 'danger', message: "Fail: ${env.JOB_NAME} - #${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)"
+        }
+        fixed {
+            slackSend color: 'good', message: "Back to Normal: ${env.JOB_NAME} - #${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)"
+        }
+        success {
+            slackSend color: 'good', message: "Success: ${env.JOB_NAME} - #${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)"
+        }
+    }
 }
