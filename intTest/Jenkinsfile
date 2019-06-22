@@ -16,22 +16,22 @@
     stage('Build'){
       steps {
         sh '''
-          cd /Volumes/ssd256g/gringotts
+          cd /Volumes/ssd256g/bolt/gringotts
           pm2 start npm --name "gringotts" -- restart
           
-          cd /Volumes/ssd256g/BOLT-TRUST
+          cd /Volumes/ssd256g/bolt/BOLT-TRUST
           pm2 start npm --name "trust" -- restart
           
-          cd /Volumes/ssd256g/BOLT-KEYSTONE
+          cd /Volumes/ssd256g/bolt/BOLT-KEYSTONE
           pm2 start npm --name "keystone" -- start
           
-          cd /Volumes/ssd256g/BOLT-KEYCHAIN
+          cd /Volumes/ssd256g/bolt/BOLT-KEYCHAIN
           pm2 start npm --name "keychain" -- start
 
-          cd /Volumes/ssd256g/BOLT-CURRENCY
+          cd /Volumes/ssd256g/bolt/BOLT-CURRENCY
           pm2 start npm --name "currency" -- restart
 
-          cd /Volumes/ssd256g/HowinvestMockAPI
+          cd /Volumes/ssd256g/bolt/HowinvestMockAPI
           pm2 start npm --name "HowinvestMockAPI" -- restart
 
           pm2 ls
