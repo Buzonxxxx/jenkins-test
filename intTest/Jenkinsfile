@@ -35,6 +35,7 @@
           pm2 start npm --name "HowinvestMockAPI" -- restart
 
           pm2 ls
+          sleep 10
         '''
       }
     }
@@ -42,6 +43,7 @@
       steps{
         sh ''' 
           cd /Volumes/ssd256g/bolt/BOLT-AUTOMATION
+          npm i
           npm t
         '''
       }
