@@ -6,9 +6,19 @@
   }
  
   stages {
-    stage('Example') {
-      steps {
-        sh 'npm config ls'
+    stage('Test') {
+      parallel{
+        stage('Execute Contract UnitTest'){
+          steps {
+            build job: 'unit_test_contracts'
+          }
+        }
+
+        stage('Execute BOLT-SDK UnitTest'){
+          steps {
+            build job: 'unit_test_sdk'
+          }
+        }
       }
     }
   }
