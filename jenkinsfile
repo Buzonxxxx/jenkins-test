@@ -6,6 +6,7 @@
   }
  
   stages {
+    stage('Test'){
       parallel{
         stage('Contract Test'){
           steps {
@@ -19,5 +20,6 @@
           }
         }
       }
+    }
   }
 }
