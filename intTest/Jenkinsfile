@@ -8,7 +8,11 @@
   stages {
     stage('Test'){
       steps {
-        sh 'pm2 ls'
+        sh '''
+          pm2 start npm --name "keystone" -- start
+          pm2 ls
+          pm2 delete all
+        '''''
       }
     }
   }
