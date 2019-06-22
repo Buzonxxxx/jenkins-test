@@ -2,7 +2,7 @@
   agent any
  
   tools {
-    nodejs "node"
+    nodejs "localNode"
   }
  
   stages {
