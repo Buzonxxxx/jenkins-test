@@ -1,0 +1,15 @@
+ pipeline {
+  agent any
+ 
+  tools {
+    nodejs "localNode"
+  }
+ 
+  stages {
+    stage('Test'){
+      steps {
+        sh 'pm2 ls'
+      }
+    }
+  }
+}
