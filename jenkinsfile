@@ -6,20 +6,18 @@
   }
  
   stages {
-    stage('Test') {
       parallel{
-        stage('Execute Contract UnitTest'){
+        stage('Contract Test'){
           steps {
             build job: 'unit_test_contracts'
           }
         }
 
-        stage('Execute BOLT-SDK UnitTest'){
+        stage('SDK Test'){
           steps {
             build job: 'unit_test_sdk'
           }
         }
       }
-    }
   }
 }
