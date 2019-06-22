@@ -34,6 +34,7 @@ pipeline {
   post {
         failure {
             slackSend color: 'danger', message: "Fail: ${env.JOB_NAME} - #${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)"
+            sh 'pm2 delete all'
         }
         fixed {
             slackSend color: 'good', message: "Back to Normal: ${env.JOB_NAME} - #${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)"
