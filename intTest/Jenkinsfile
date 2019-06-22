@@ -1,3 +1,11 @@
+ #!/usr/bin/env groovy
+
+import java.util.Date
+def start = new Date()
+def err = null
+
+currentBuild.result = "SUCCESS"
+ 
  pipeline {
   agent any
  
@@ -6,29 +14,37 @@
   }
  
   stages {
-    stage('Update'){
-      steps{
-        sh 'sh /Volumes/ssd256g/scripts/updateBolt.sh'
-      }
-    }
+    // stage('Update'){
+    //   steps{
+    //     sh 'sh /Volumes/ssd256g/scripts/updateBolt.sh'
+    //   }
+    // }
     stage('Build'){
       steps {
         sh 'sh /Volumes/ssd256g/scripts/startBolt.sh'
       }
     }
-    stage('Test'){
-      steps{
-        sh ''' 
-          cd /Volumes/ssd256g/bolt/BOLT-AUTOMATION
-          npm i
-          npm t
-        '''
-      }
-    }
+    // stage('Test'){
+    //   steps{
+    //     sh ''' 
+    //       cd /Volumes/ssd256g/bolt/BOLT-AUTOMATION
+    //       npm i
+    //       npm t
+    //     '''
+    //   }
+    // }
     stage('Delete'){
       steps{
         sh 'pm2 delete all'
       }
     }
   }
+}
+
+def timeDiff(st) {
+    def delta = (new Date()).getTime() - st.getTime()
+    def seconds = delta.intdiv(1000) % 60
+    def minutes = delta.intdiv(60 * 1000) % 60
+
+    return "${minutes} min ${seconds} sec"
 }
