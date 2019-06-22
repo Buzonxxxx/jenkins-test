@@ -8,36 +8,12 @@
   stages {
     stage('Update'){
       steps{
-        sh ''' 
-          sh /Volumes/ssd256g/scripts/updateBolt.sh
-        '''
+        sh 'sh /Volumes/ssd256g/scripts/updateBolt.sh'
       }
     }
     stage('Build'){
       steps {
-        sh '''
-          cd /Volumes/ssd256g/bolt/gringotts
-          pm2 start npm --name "gringotts" -- restart
-          
-          cd /Volumes/ssd256g/bolt/BOLT-TRUST
-          pm2 start npm --name "trust" -- restart
-          
-          cd /Volumes/ssd256g/bolt/BOLT-KEYSTONE
-          pm2 start npm --name "keystone" -- start
-          
-          cd /Volumes/ssd256g/bolt/BOLT-KEYCHAIN
-          pm2 start npm --name "keychain" -- start
-
-          cd /Volumes/ssd256g/bolt/BOLT-CURRENCY
-          pm2 start npm --name "currency" -- restart
-
-          sleep 10
-          
-          cd /Volumes/ssd256g/bolt/HowinvestMockAPI
-          pm2 start npm --name "HowinvestMockAPI" -- restart
-
-          pm2 ls
-        '''
+        sh 'sh /Volumes/ssd256g/scripts/startBolt.sh'
       }
     }
     stage('Test'){
